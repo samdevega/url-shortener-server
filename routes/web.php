@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::post('/new_url', 'App\Http\Controllers\ShortUrlController@create');
 Route::get('/history', 'App\Http\Controllers\ShortUrlController@index');
+Route::post('/resolve', 'App\Http\Controllers\ShortUrlController@show');
