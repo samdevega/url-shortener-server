@@ -10,7 +10,7 @@ class UrlGenerator
     private $length;
 
     public function __construct() {
-        $this->shortUrlPrefix = URL::to('/');
+        $this->shortUrlPrefix = 'http://localhost:8080';
         $this->length = 8;
     }
 
