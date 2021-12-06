@@ -52,7 +52,7 @@ class NewUrlTest extends TestCase
     public function test_response_content()
     {
         $url = 'https://www.example.com/whatever';
-        $urlPattern = "/^" . preg_quote(URL::to('/'), '/') . "\/\w+$/i";
+        $urlPattern = "/^" . preg_quote('http://localhost:8080', '/') . "\/\w+$/i";
 
         $response = $this->json(
           'POST',
