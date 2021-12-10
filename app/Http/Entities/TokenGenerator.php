@@ -4,7 +4,7 @@ namespace App\Http\Entities;
 
 use Illuminate\Support\Facades\URL;
 
-class UrlGenerator
+class TokenGenerator
 {
     private $shortUrlPrefix;
     private $length;
