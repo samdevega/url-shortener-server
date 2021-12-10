@@ -9,8 +9,8 @@ class NewUrl
 {
   private $tokenGenerator;
 
-  public function __construct() {
-      $this->tokenGenerator = new TokenGenerator();
+  public function __construct(TokenGenerator $tokenGenerator) {
+      $this->tokenGenerator = $tokenGenerator;
   }
 
   public function execute($url) {

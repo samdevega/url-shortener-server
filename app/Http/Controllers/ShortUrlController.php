@@ -9,14 +9,14 @@ use App\Http\UseCases\GetUrl;
 
 class ShortUrlController extends Controller
 {
-    private $newUrl;
-    private $listUrl;
     private $getUrl;
+    private $listUrl;
+    private $newUrl;
 
-    public function __construct() {
-        $this->newUrl = new NewUrl();
-        $this->listUrl = new ListUrl();
-        $this->getUrl = new GetUrl();
+    public function __construct(GetUrl $getUrl, ListUrl $listUrl, NewUrl $newUrl) {
+        $this->getUrl = $getUrl;
+        $this->listUrl = $listUrl;
+        $this->newUrl = $newUrl;
     }
 
     public function store(Request $request)
