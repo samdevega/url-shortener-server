@@ -9,8 +9,8 @@ class ListUrl
   public function execute()
   {
     return ShortUrl::latest()->take(10)->get([
-      'long_url',
-      'short_url'
+      'url',
+      'token'
     ]);
   }
 }

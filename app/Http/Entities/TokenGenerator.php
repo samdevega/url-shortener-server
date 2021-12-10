@@ -6,20 +6,14 @@ use Illuminate\Support\Facades\URL;
 
 class TokenGenerator
 {
-    private $shortUrlPrefix;
-    private $length;
-
-    public function __construct() {
-        $this->shortUrlPrefix = 'http://localhost:8080';
-        $this->length = 8;
-    }
+    private const LENGTH = 8;
 
     public function generate() {
-        $shortUrlBody = '';
-        for ($index = 0; $index < $this->length; $index++) {
-            $shortUrlBody .= $this->generateRandomCharacter();
+        $token = '';
+        for ($index = 0; $index < self::LENGTH; $index++) {
+            $token .= $this->generateRandomCharacter();
         }
-        return $this->shortUrlPrefix . '/' . $shortUrlBody;
+        return $token;
     }
 
     private function generateRandomCharacter() {

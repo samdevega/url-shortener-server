@@ -13,18 +13,18 @@ class NewUrl
       $this->tokenGenerator = new TokenGenerator();
   }
 
-  public function execute($longUrl) {
+  public function execute($url) {
     $isTaken = false;
-    $shortUrl = '';
+    $token = '';
     do {
-      $shortUrl = $this->tokenGenerator->generate();
-      $record = ShortUrl::where("short_url", $shortUrl)->first();
+      $token = $this->tokenGenerator->generate();
+      $record = ShortUrl::where('token', $token)->first();
       $isTaken = $record !== null;
     } while ($isTaken);
     $shortUrlModel = new ShortUrl();
-    $shortUrlModel->long_url = $longUrl;
-    $shortUrlModel->short_url = $shortUrl;
+    $shortUrlModel->url = $url;
+    $shortUrlModel->token = $token;
     $shortUrlModel->save();
-    return $shortUrl;
+    return $token;
   }
 }

@@ -52,7 +52,7 @@ class NewUrlTest extends TestCase
     public function test_response_content()
     {
         $url = 'https://www.example.com/whatever';
-        $urlPattern = "/^" . preg_quote('http://localhost:8080', '/') . "\/\w+$/i";
+        $tokenPattern = "/^\w+$/i";
 
         $response = $this->json(
           'POST',
@@ -60,7 +60,7 @@ class NewUrlTest extends TestCase
           ['url' => $url]
         );
 
-        $this->assertEquals($url, $response['long_url']);
-        $this->assertEquals(1, preg_match($urlPattern, $response['short_url']));
+        $this->assertEquals($url, $response['url']);
+        $this->assertEquals(1, preg_match($tokenPattern, $response['token']));
     }
 }

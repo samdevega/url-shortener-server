@@ -28,10 +28,10 @@ class ShortUrlController extends Controller
                 'message' => $url . ' is not a valid URL'
             ], 400);
         }
-        $shortUrl = $this->newUrl->execute($url);
+        $token = $this->newUrl->execute($url);
         return response()->json([
-            'long_url' => $url,
-            'short_url' => $shortUrl
+            'url' => $url,
+            'token' => $token
         ], 201);
     }
 

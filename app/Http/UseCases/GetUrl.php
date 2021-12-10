@@ -6,13 +6,13 @@ use App\Models\ShortUrl;
 
 class GetUrl
 {
-  public function execute($shortUrl)
+  public function execute($token)
   {
-    return ShortUrl::where('short_url', $shortUrl)
+    return ShortUrl::where('token', $token)
     ->orderBy('created_at', 'desc')
     ->get([
-      'long_url',
-      'short_url'
+      'url',
+      'token'
     ])
     ->first();
   }

@@ -36,8 +36,8 @@ class GetUrlTest extends TestCase
     {
         $token = 'irrelevant';
         $shortUrlModel = new ShortUrl();
-        $shortUrlModel->long_url = $token;
-        $shortUrlModel->short_url = $token;
+        $shortUrlModel->url = $token;
+        $shortUrlModel->token = $token;
         $shortUrlModel->save();
 
         $response = $this->json(
@@ -47,8 +47,8 @@ class GetUrlTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertEquals([
-          'long_url' => $token,
-          'short_url' => $token
+          'url' => $token,
+          'token' => $token
         ], json_decode($response->getContent(), true));
     }
 }
