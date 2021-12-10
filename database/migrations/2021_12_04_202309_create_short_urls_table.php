@@ -15,7 +15,7 @@ class CreateShortUrlsTable extends Migration
     {
         Schema::create('short_urls', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('url', 2083); // Max length allowed by some browsers
             $table->string('token');
             $table->timestamps();
         });
