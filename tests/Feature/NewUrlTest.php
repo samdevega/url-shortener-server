@@ -17,11 +17,11 @@ class NewUrlTest extends TestCase
      */
     public function test_invalid_url()
     {
-        $url = 'htp://www.example.com/whatever';
+        $url = 'htp://www.examplehttp.com/whatever';
 
         $response = $this->json(
           'POST',
-          '/new_url',
+          '/urls',
           ['url' => $url]
         );
 
@@ -39,7 +39,7 @@ class NewUrlTest extends TestCase
 
         $response = $this->json(
           'POST',
-          '/new_url',
+          '/urls',
           ['url' => $url]
         );
 
@@ -56,7 +56,7 @@ class NewUrlTest extends TestCase
 
         $response = $this->json(
           'POST',
-          '/new_url',
+          '/urls',
           ['url' => $url]
         );
 

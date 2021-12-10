@@ -17,7 +17,7 @@ class ListUrlTest extends TestCase
      */
     public function test_empty_list()
     {
-        $response = $this->get('/history');
+        $response = $this->get('/urls');
 
         $response->assertStatus(200);
         $this->assertEquals([], json_decode($response->getContent(), true));
@@ -30,17 +30,17 @@ class ListUrlTest extends TestCase
      */
     public function test_list()
     {
-        $urlSample = 'irrelevant';
+        $token = 'irrelevant';
         $shortUrlModel = new ShortUrl();
-        $shortUrlModel->long_url = $urlSample;
-        $shortUrlModel->short_url = $urlSample;
+        $shortUrlModel->long_url = $token;
+        $shortUrlModel->short_url = $token;
         $shortUrlModel->save();
 
-        $response = $this->get('/history');
+        $response = $this->get('/urls');
         $response->assertStatus(200);
         $this->assertEquals([
-          'long_url' => $urlSample,
-          'short_url' => $urlSample
+          'long_url' => $token,
+          'short_url' => $token
         ], json_decode($response->getContent(), true)[0]);
     }
 }

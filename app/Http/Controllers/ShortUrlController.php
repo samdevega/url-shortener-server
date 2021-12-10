@@ -19,18 +19,18 @@ class ShortUrlController extends Controller
         $this->getUrl = new GetUrl();
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $longUrl = $request->url;
-        $isValidUrl = $this->validateUrl($longUrl);
+        $url = $request->url;
+        $isValidUrl = $this->validateUrl($url);
         if (!$isValidUrl) {
             return response()->json([
-                'message' => $longUrl . ' is not a valid URL'
+                'message' => $url . ' is not a valid URL'
             ], 400);
         }
-        $shortUrl = $this->newUrl->execute($longUrl);
+        $shortUrl = $this->newUrl->execute($url);
         return response()->json([
-            'long_url' => $longUrl,
+            'long_url' => $url,
             'short_url' => $shortUrl
         ], 201);
     }
@@ -43,14 +43,8 @@ class ShortUrlController extends Controller
 
     public function show(Request $request)
     {
-        $shortUrl = $request->url;
-        $isValidUrl = $this->validateUrl($shortUrl);
-        if (!$isValidUrl) {
-            return response()->json([
-                'message' => $shortUrl . ' is not a valid URL'
-            ], 400);
-        }
-        $url = $this->getUrl->execute($shortUrl);
+        $token = $request->route('token');
+        $url = $this->getUrl->execute($token);
         if (!$url) {
             return response()->json([
                 'message' => 'URL not found'
@@ -60,7 +54,7 @@ class ShortUrlController extends Controller
     }
 
     private function validateUrl($url) {
-        $urlPattern = "/^ftp|http|https:\/\/[^:]+$/i";
+        $urlPattern = "/^(ftp|http|https):\/\/[^:]+$/i";
         return preg_match($urlPattern, $url);
     }
 }
